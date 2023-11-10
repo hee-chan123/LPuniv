@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.lpuniv.Juchan.OCC.Dao.OccDao">
+    <select id="OccAllSelect" resultType="com.project.lpuniv.Juchan.OCC.Dto.OccDto">
+        select * from OCC
+    </select>
+
+    <select id="OccAllCount" resultType="Integer">
+        SELECT count(*) FROM OCC
+    </select>
+
+    <select id="OccAllSelectDesc" resultType="com.project.lpuniv.Juchan.OCC.Dto.OccDto">
+        SELECT * FROM OCC ORDER BY OCC_NO desc
+    </select>
+
+<!--    <select id="clubInfoListPage" resultType="com.project.ownote.club.clubInfo.dto.ClubDto">-->
+<!--        SELECT club.*, clubcategory.clubcategory_file-->
+<!--        FROM club-->
+<!--                 INNER JOIN clubcategory ON club.clubcategory_name = clubcategory.clubcategory_name-->
+<!--        ORDER BY club.club_id DESC-->
+<!--            LIMIT #{startRow}, #{size}-->
+<!--    </select>-->
+
+    <insert id="OccInsert" parameterType="com.project.lpuniv.Juchan.OCC.Dto.OccDto">
+        INSERT INTO OCC (teach_NO, OCC_title, OCC_content, OCC_date, OCC_ROT, OCC_teachInfo, OCC_kakao)
+        VALUES (#{teach_NO}, #{OCC_title}, #{OCC_content}, now(), #{OCC_ROT}, #{OCC_teachInfo}, #{OCC_kakao})
+    </insert>
+
+    <select id="OccOneSelect" resultType="com.project.lpuniv.Juchan.OCC.Dto.OccDto">
+        select * from OCC where OCC_NO = #{OCC_NO}
+    </select>
+
+
+    <update id="OccModify" parameterType="com.project.lpuniv.Juchan.OCC.Dto.OccDto">
+        update OCC
+        set teach_NO = #{teach_NO}, OCC_title = #{OCC_title},
+            OCC_content = #{OCC_content}, OCC_Mdate = now(),
+            OCC_ROT = #{OCC_ROT}, OCC_teachInfo = #{OCC_teachInfo}, OCC_kakao = #{OCC_kakao}
+        where OCC_NO = #{OCC_NO}
+    </update>
+
+<!--    <delete id="deleteClub" parameterType="int">-->
+<!--        DELETE FROM club WHERE club_id = #{club_id}-->
+<!--    </delete>-->
+
+</mapper>
