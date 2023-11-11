@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메시지쓰기</title>
+</head>
+<body>
+<div>
+    발신자 : <span><input type="text" name="senderNm" /></span>
+    수신자 : <span><input type="text" name="receiverNm" /></span><br/>
+    제목 : <span><input type="text" name="title" /></span><br/>
+    내용 : <br/><label><textarea style="resize: none;" name="content"  cols="70" rows="15"></textarea></label>
+</div>
+<button onclick="changePage('/message/recmsg')">이전으로</button><br/>
+<button onclick="changePage('/message/write')">메시지보내기</button><br/>
+</body>
+</html>

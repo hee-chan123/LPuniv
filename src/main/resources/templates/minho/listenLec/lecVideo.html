@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>강의 영상</title>
+</head>
+<body>
+<div class="modal_wrap" th:each="lecVideo : ${lecVideo}">
+    <div class="modal_wrap_content">
+        <div id="youtubeVideo"></div>
+        <div id="board_wrap_videoId" th:attr="videoId=${lecVideo.CCIM_videoID}"></div>
+    </div>
+</div>
+<script src="/js/lecVideo.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>

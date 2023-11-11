@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메시지내용</title>
+</head>
+<body>
+    <div>
+        발신자 : <span th:text="${message.senderNm}"></span>
+        수신자 : <span th:text="${message.receiverNm}"></span><br/>
+        <span th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span><br/>
+        제목 : <span th:text="${message.title}"></span><br/>
+        내용 : <br/><label><textarea th:text="${message.content}" style="resize: none;" name="content"  cols="90" rows="25" readonly="readonly"></textarea></label>
+    </div>
+    <th:block th:if="${message.receiverId == userNO}">
+        <button onclick="changePage('/message/recmsg')">목록으로</button><br/>
+    </th:block>
+    <th:block th:unless="${message.receiverId == userNO}">
+        <button onclick="changePage('/message/senmsg')">목록으로</button><br/>
+    </th:block>
+</body>
+</html>

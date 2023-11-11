@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 작성</title>
+    <style>
+        .file-list-container {
+            display: none;
+            width: 30%;
+            margin-top: 10px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        .file-item {
+            background: #f3f3f3;
+            border: 1px solid #e1e1e1;
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .delete-btn {
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        #dropzone {
+            border: 2px dashed #ccc;
+            padding: 10px;
+            position: relative;
+            cursor: pointer;
+            width: 30%;
+            text-align: center;
+            margin-bottom: 20px;
+
+        }
+        .contents {
+            width: 32%;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>게시글 작성</h1>
+<form th:action="@{/boards/{board_name}/posts(board_name=${board_name})}" th:object="${post}" method="post" enctype="multipart/form-data">
+    <input type="text" th:field="*{user_no}" placeholder="사용자 번호"><br><br>
+    <input type="text" th:field="*{title}" placeholder="제목"><br><br>
+
+    <textarea class="contents" th:field="*{content}" placeholder="내용"></textarea><br><br>
+
+    <div id="dropzone">
+        <input type="file" id="fileInput" name="files" multiple="multiple" style="display: none;">
+        <p id="dropzoneText">파일을 이곳에 드래그 & 드롭하거나 클릭하여 선택해주세요.</p>
+    </div>
+
+    <div id="fileList" class="file-list-container"></div>
+
+    <button type="submit">게시글 등록</button>
+</form>
+
+<script>
+    var dropzone = document.getElementById('dropzone');
+    var fileInput = document.getElementById('fileInput');
+    var fileList = document.getElementById('fileList');
+    var uploadedFiles = [];
+
+    dropzone.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function(event) {
+        handleFiles(event.target.files);
+    });
+
+    dropzone.addEventListener('dragover', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        dropzone.style.border = "2px solid #000";
+    });
+
+    dropzone.addEventListener('dragleave', function(event) {
+        dropzone.style.border = "2px dashed #ccc";
+    });
+
+    dropzone.addEventListener('drop', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        dropzone.style.border = "2px dashed #ccc";
+        handleFiles(event.dataTransfer.files);
+    });
+
+    function handleFiles(newFiles) {
+        Array.from(newFiles).forEach(function(file) {
+            uploadedFiles.push(file);
+        });
+        updateFileList();
+    }
+
+    function updateFileList() {
+
+        fileList.style.display = uploadedFiles.length > 0 ? 'block' : 'none';
+        fileList.innerHTML = '';
+        uploadedFiles.forEach(function(file, index) {
+            var fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.textContent = file.name;
+
+            var deleteBtn = document.createElement('span');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.textContent = 'X';
+            deleteBtn.onclick = function() {
+                uploadedFiles.splice(index, 1);
+                updateFileList();
+            };
+
+            fileItem.appendChild(deleteBtn);
+            fileList.appendChild(fileItem);
+        });
+    }
+</script>
+
+</body>
+</html>

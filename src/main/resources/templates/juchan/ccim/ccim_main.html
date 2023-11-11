@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-2E9/b2fZ+VJoP6eRIpzzMFkuqbh0qDkIFVLzJJwkESsdKPEwzb0n6E55enZ+Ee8V" crossorigin="anonymous">
+</head>
+<body>
+<div class="header"><strong>챕터 목록</strong> <br></div>
+<div class="cards" style="justify-content: center; align-content: center; display: flex;">
+    <div th:each="card, cardStat : ${listPage.ccimDtos}" th:id="'card' + ${cardStat.index}" class="card" style="width: 25rem;">
+        <div class="card-header" style="background-color: #a2a8ff; height: 5rem;"></div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${card.ccim_title}">Card title</h5>
+            <div th:id="'videoDiv' + ${card.ccim_NO}" class="youtube-video" th:attr="data-video-id=${card.ccim_videoID}"></div>
+            <p class="card-text"> 해당 강의 "[[${card.ccim_title}]]" 챕터 관리</p>
+            <a th:href="@{'/ccim?ccim_NO=' + ${card.ccim_NO}}" class="btn btn-primary">챕터 보기</a>
+            <a th:href="@{'/ccim/ccim_modify?ccim_NO=' + ${card.ccim_NO}}" class="btn btn-primary">챕터 수정</a>
+        </div>
+    </div>
+</div>
+<nav aria-label="Page navigation example" >
+    <div class="board-list-page"  th:if="${listPage.hasCcimDtos()}">
+        <ul class="pagination" style="justify-content: center; text-align: center;">
+            <li class="page-item">
+            <li class="page-item" th:if="${listPage.currentPage > 1}">
+                <a class="page-link" aria-label="<<" th:href="@{'/ccim?occ_NO=' + ${occ_NO} + '&pageNo=' + ${listPage.currentPage - 1}}">&laquo;</a>
+            </li>
+            <span th:each="pNo : ${#numbers.sequence(listPage.startPage, listPage.endPage)}">
+                <span th:if="${pNo == listPage.currentPage}">
+                    <li class="page-item">
+                        <a style="font-weight: bold" class="page-link" aria-current="page" th:text="${pNo}">[[${pNo}]]</a>
+                    </li>
+                </span>
+                <span  th:unless="${pNo == listPage.currentPage}">
+                    <li class="page-item">
+                        <a class="page-link" th:aria-label="${pNo}" th:text="${pNo}" th:href="@{'/ccim?occ_NO=' + ${occ_NO} + '&pageNo=' + ${pNo}}">[[${pNO}]]</a>
+                    </li>
+                </span>
+            </span>
+            <span th:if="${listPage.currentPage < listPage.totalPages}">
+                <a class="page-link" th:href="@{'/ccim?occ_NO=' + ${occ_NO} + '&pageNo=' + ${listPage.currentPage + 1}}">&raquo;</a>
+            </span>
+
+        </ul>
+    </div>
+</nav>
+<div class="footer">
+    <a class="effect effect-1" th:href="@{'/ccim/ccim_insert?occ_NO=' + ${occ_NO}}">새로운 차시 등록</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/juchan/js/iframe_api.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/js/coreui.min.js" integrity="sha384-Ccu4pXX7m9x5nOmnhLGyxq3pqYWoc67qHmnJwC20bxJvdziB6gZtOAb9BLN5bOOb" crossorigin="anonymous"></script>
+</body>
+</html>
