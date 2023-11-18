@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.lpuniv.junhyuk.dao.PostDao">
+
+    <select id="getAllPosts" resultType="com.project.lpuniv.junhyuk.dto.Post">
+        select * from post
+    </select>
+
+
+    <select id="getAllPostsByBoard" resultType="com.project.lpuniv.junhyuk.dto.Post">
+        SELECT * FROM post WHERE board_no = #{board_no}
+    </select>
+
+    <select id="getLastPostNumByBoard" resultType="int" parameterType="int">
+        SELECT COALESCE(MAX(num), 0) FROM post WHERE board_no = #{board_no}
+    </select>
+
+
+    <insert id="createPost" parameterType="com.project.lpuniv.junhyuk.dto.Post" useGeneratedKeys="true" keyProperty="post_no" >
+        INSERT INTO post (board_no, num, title, content, user_no)
+        VALUES (#{board_no}, #{num}, #{title}, #{content}, #{user_no})
+    </insert>
+
+
+
+    <select id="findByPostNo" resultType="com.project.lpuniv.junhyuk.dto.Post">
+        SELECT * FROM post WHERE post_no = #{post_no}
+    </select>
+
+
+
+
+</mapper>

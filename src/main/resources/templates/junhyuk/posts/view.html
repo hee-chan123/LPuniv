@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세 보기</title>
+</head>
+<body>
+
+<h1 th:text="${post.title}">게시글 제목</h1>
+<p th:text="${post.content}">게시글 내용</p>
+<p th:text="${#temporals.format(post.date_created, 'yyyy-MM-dd HH:mm')}">게시글 작성일</p>
+<p th:text="${post.hits}">조회수</p>
+
+<div th:if="${not #lists.isEmpty(attachments)}">
+    <h2>첨부 파일</h2>
+    <ul>
+        <li th:each="attachment : ${attachments}">
+
+            <a th:href="@{/files/download/{filename}(filename=${attachment.getFile_name()})}" th:text="${attachment.original_file_name}">첨부파일명</a>
+        </li>
+    </ul>
+</div>
+
+
+
+
+</body>
+</html>

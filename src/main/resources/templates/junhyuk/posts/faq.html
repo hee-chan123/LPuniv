@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+
+</head>
+<body>
+<h1>FAQ</h1>
+<div th:if="${posts.empty}">
+    <p>게시글이 없습니다.</p>
+</div>
+<div th:unless="${posts.empty}">
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td th:text="${post.num}">1</td>
+            <td><a th:href="@{/boards/{board_name}/posts/{post_no}(board_name=${board_name}, post_no=${post.post_no})}" th:text="${post.title}">게시글 제목</a></td>
+            <td th:text="${post.title}"></td>
+            <td th:text="${#temporals.format(post.date_created, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${post.hits}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+    <a th:href="@{'/boards/' + ${board_name} + '/posts/create'}">새 게시글 작성</a>
+</div>
+</body>
+</html>

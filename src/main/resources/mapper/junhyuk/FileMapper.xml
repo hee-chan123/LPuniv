@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.lpuniv.junhyuk.dao.FileDao">
+
+    <insert id="save" parameterType="com.project.lpuniv.junhyuk.dto.FileAttachment">
+        INSERT INTO file_attachment (post_no, file_name, original_file_name ,file_path, file_size, file_uploaded_date)
+        VALUES (#{post_no}, #{file_name},#{original_file_name}, #{filePath}, #{fileSize}, #{fileUploadedDate})
+    </insert>
+
+    <select id="findAttachmentsByPostNo" resultType="com.project.lpuniv.junhyuk.dto.FileAttachment">
+        SELECT * FROM file_attachment WHERE post_no = #{post_no}
+    </select>
+
+    <select id="getOriginalFileName" parameterType="string" resultType="string">
+        SELECT original_file_name FROM file_attachment WHERE file_name = #{file_name}
+    </select>
+
+
+
+</mapper>
