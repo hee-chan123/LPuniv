@@ -235,16 +235,20 @@ $(document).ready(function () { //메시지 작성
 
         let selectedUsers = $('input[name="rec-nm-no"]').val().split(',');
         let receivers = [];
-        selectedUsers.forEach(function (user) {
-            let receiverNm = user.trim();
-            console.log(receiverNm);
-            let receiverNo = $(`select[name="rec-select"] option[value="${receiverNm}"]`).attr('data-user-no');
-            console.log(receiverNo);
-            receivers.push({
-                receiverNo: receiverNo,
-                receiverNm: receiverNm
+
+        if(selectedUsers[0] === ''){
+            alert("수신자를 지정해주세요.");
+            error = true;
+        } else {
+            selectedUsers.forEach(function (user) {
+                let receiverNm = user.trim();
+                let receiverNo = $(`select[name="rec-select"] option[value="${receiverNm}"]`).attr('data-user-no');
+                receivers.push({
+                    receiverNo: receiverNo,
+                    receiverNm: receiverNm
+                });
             });
-        });
+        }
 
         let title = $('input[name="title"]').val();
         let content = $('textarea[name="content"]').val();
@@ -308,6 +312,60 @@ $(document).ready(function () { //메시지 수정
                 },
                 error: function () {
                     alert("오류")
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () { //받은 메시지에서 답변 메시지 작성
+    $('#submit2').click(function (e) {
+        e.preventDefault();
+        let error = false;
+        let senderNo = $('input[name="msg-recno"]').val();
+        console.log(senderNo);
+        let senderNm = $('#receiverNm').text();
+        console.log(senderNm);
+        let receiverNo = $('input[name="msg-senno"]').val();
+        console.log(receiverNo);
+        let receiverNm = $('#senderNm').text();
+        console.log(receiverNm);
+        let receivers = [];
+        receivers.push({
+            receiverNo: receiverNo,
+            receiverNm: receiverNm
+        });
+
+        let title = $('input[name="title"]').val();
+        console.log(title);
+        let content = $('textarea[name="content"]').val();
+        console.log(content);
+
+        if(!title || !content){
+            alert("제목과 내용을 입력해주세요.");
+            error = true;
+        }
+
+        if(!error){
+            $.ajax({
+                type: 'POST',
+                url: '/message/msgwrite',
+                contentType: 'application/json',
+                dataType: 'text',
+                data: JSON.stringify({
+                    senderNo: senderNo,
+                    senderNm: senderNm,
+                    receivers: receivers,
+                    title: title,
+                    content: content
+                }),
+                success: function () {
+                    alert("작성 성공");
+                    $('#modalContent').load('/message/senmsg');
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                    alert("오류 발생: " + error);
                 }
             });
         }
