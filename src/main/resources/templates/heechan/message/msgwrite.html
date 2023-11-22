@@ -41,13 +41,13 @@
         수신자 : <span>
             <input type="text" name="rec-nm-no" oninput="filterRecipients()" readonly/>
             <input type="text" name="rec-search" oninput="filterRecipients()" placeholder="수신자를 검색하세요" />
-            <select name="rec-select" multiple ondblclick="updateInputValue()">
-                <span th:each="user : ${users}">
-                    <span th:if="${user.getUser_tp() == 2}">
-                        <option th:value="${user.user_nm}" th:text="${user.user_nm+'(강사)'}" th:attr="data-user-no=${user.user_no}"></option>
+            <select name="rec-select" multiple ondblclick="updateInputValue()" size="10">
+                <span th:each="mul : ${msgUsersList}">
+                    <span th:if="${mul.userTp == 2}">
+                        <option th:value="${mul.userNm}" th:text="${mul.userNm+'(강사)' + '(' + mul.occTitle + ')'}" th:attr="data-user-no=${mul.userNo}"></option>
                     </span>
-                    <span th:if="${user.getUser_tp() == 1}">
-                        <option th:value="${user.user_nm}" th:text="${user.user_nm+'(수강생)'}" th:attr="data-user-no=${user.user_no}"></option>
+                    <span th:if="${mul.userTp == 1}">
+                        <option th:value="${mul.userNm}" th:text="${mul.userNm+'(수강생)' + '(' + mul.occTitle + ')'}" th:attr="data-user-no=${mul.userNo}"></option>
                     </span>
                 </span>
             </select>
