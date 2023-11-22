@@ -383,7 +383,7 @@ $(document).ready(function () { //받은 메시지에서 답변 메시지 작성
 // });
 
 function updateMessageCount() {
-    fetch("/message/recmsg")
+    fetch("/")
         .then(response => response.text())
         .then(data => {
             const match = data.match(/<span id="msg-cnt"[^>]*>(.*?)<\/span>/);
