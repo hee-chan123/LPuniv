@@ -249,7 +249,6 @@ public class MessageController {
             model.addAttribute("admin", admin);
         } else {
             List<MsgUserList> msgUsersList = messageService.userList();
-            System.out.println(msgUsersList);
             model.addAttribute("msgUsersList", msgUsersList);
         }
 
