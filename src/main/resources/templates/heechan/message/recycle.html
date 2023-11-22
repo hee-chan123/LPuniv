@@ -34,44 +34,44 @@
         <span class="title-rec">수신자</span>
         <span class="title-title">제목</span>
         <span class="title-date">날짜</span>
-        <span class="title-recycledel">삭제</span>
-        <span class="title-recycle">복귀</span>
+        <span class="title-recycle">삭제</span>
+        <span class="title-recycle">복구</span>
     </div>
     <th:block th:each="message : ${msgPage.content}">
-        <div class="message-container">
+        <div class="recycle-message-container">
             <span th:if="${message.senDel == 1}">
-                <span class="message-status" th:if="${message.readFlag == 0}">보냄</span>
-                <span class="message-sen" th:text="${message.senderNm}"></span>
-                <span class="message-rec" th:text="${message.receiverNm}"></span>
-                <span class="message-span" th:if="${searchInput == null && searchOp  == null && div == null}">
-                    <span class="message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo}} + '&div=sen' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
-                    <span class="message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleDelMsg(\'' + ${message.msgNo} + '\', \'' + 'sen' + '\')'" style="cursor: pointer">삭제</span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleSenMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
+                <span class="recycle-message-status" th:if="${message.readFlag == 0}">보냄</span>
+                <span class="recycle-message-sen" th:text="${message.senderNm}"></span>
+                <span class="recycle-message-rec" th:text="${message.receiverNm}"></span>
+                <span class="recycle-message-span" th:if="${searchInput == null && searchOp  == null && div == null}">
+                    <span class="recycle-message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo}} + '&div=sen' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
+                    <span class="recycle-message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span class="recycle-delete-button1" th:attr="onclick='recycleDelMsg(\'' + ${message.msgNo} + '\', \'' + 'sen' + '\')'" style="cursor: pointer">삭제</span>
+                    <span class="recycle-delete-button2" th:attr="onclick='recycleSenMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
                 </span>
-                <span class="message-span" th:if="${searchInput != null && searchOp  != null && div != null}">
-                    <span class="message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo} + '&searchInput=' + ${searchInput} + '&searchOp=' + ${searchOp} + '&div=' + ${div}} + '&div=rec' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
-                    <span class="message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleDelSearchMsg(\''+ ${message.msgNo} + '\', \'' + ${pageNo} + '\', \'' + ${searchInput} + '\', \'' + ${searchOp} + '\', \'' + ${div} + '\')'" style="cursor: pointer">삭제</span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleSenMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
+                <span class="recycle-message-span" th:if="${searchInput != null && searchOp  != null && div != null}">
+                    <span class="recycle-message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo} + '&searchInput=' + ${searchInput} + '&searchOp=' + ${searchOp} + '&div=' + ${div}} + '&div=rec' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
+                    <span class="recycle-message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span class="recycle-delete-button1" th:attr="onclick='recycleDelSearchMsg(\''+ ${message.msgNo} + '\', \'' + ${pageNo} + '\', \'' + ${searchInput} + '\', \'' + ${searchOp} + '\', \'' + ${div} + '\')'" style="cursor: pointer">삭제</span>
+                    <span class="recycle-delete-button2" th:attr="onclick='recycleSenMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
                 </span>
             </span>
 
             <span th:if="${message.recDel == 1}">
-                <span class="message-status" th:if="${message.readFlag == 0}">받음</span>
-                <span class="message-sen" th:text="${message.senderNm}"></span>
-                <span class="message-rec" th:text="${message.receiverNm}"></span>
-                <span class="message-span" th:if="${searchInput == null && searchOp  == null && div == null}">
-                    <span class="message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo}} + '&div=rec' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
-                    <span class="message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleDelMsg(\'' + ${message.msgNo} + '\', \'' + 'rec' + '\')'" style="cursor: pointer">삭제</span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleRecMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
+                <span class="recycle-message-status" th:if="${message.readFlag == 0}">받음</span>
+                <span class="recycle-message-sen" th:text="${message.senderNm}"></span>
+                <span class="recycle-message-rec" th:text="${message.receiverNm}"></span>
+                <span class="recycle-message-span" th:if="${searchInput == null && searchOp  == null && div == null}">
+                    <span class="recycle-message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo}} + '&div=rec' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
+                    <span class="recycle-message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span class="recycle-delete-button1" th:attr="onclick='recycleDelMsg(\'' + ${message.msgNo} + '\', \'' + 'rec' + '\')'" style="cursor: pointer">삭제</span>
+                    <span class="recycle-delete-button2" th:attr="onclick='recycleRecMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
                 </span>
-                <span class="message-span" th:if="${searchInput != null && searchOp  != null && div != null}">
-                    <span class="message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo} + '&searchInput=' + ${searchInput} + '&searchOp=' + ${searchOp} + '&div=' + ${div}} + '&div=rec' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
-                    <span class="message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleDelSearchMsg(\''+ ${message.msgNo} + '\', \'' + ${pageNo} + '\', \'' + ${searchInput} + '\', \'' + ${searchOp} + '\', \'' + ${div} + '\')'" style="cursor: pointer">삭제</span>
-                    <span class="recycle-delete-button" th:attr="onclick='recycleRecMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
+                <span class="recycle-message-span" th:if="${searchInput != null && searchOp  != null && div != null}">
+                    <span class="recycle-message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo} + '&searchInput=' + ${searchInput} + '&searchOp=' + ${searchOp} + '&div=' + ${div}} + '&div=rec' + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
+                    <span class="recycle-message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span class="recycle-delete-button1" th:attr="onclick='recycleDelSearchMsg(\''+ ${message.msgNo} + '\', \'' + ${pageNo} + '\', \'' + ${searchInput} + '\', \'' + ${searchOp} + '\', \'' + ${div} + '\')'" style="cursor: pointer">삭제</span>
+                    <span class="recycle-delete-button2" th:attr="onclick='recycleRecMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">복구</span><br/>
                 </span>
             </span>
         </div>
