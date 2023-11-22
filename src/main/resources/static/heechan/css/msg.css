@@ -31,7 +31,7 @@
     padding: 10px;
     font-size: 16px;
 }
-
+/******************************************************************************************/
 .title-message-container {
     display: flex;
     justify-content: space-between;
@@ -64,8 +64,8 @@
     text-align: center;
 }
 
-.title-message-container .title-recycledel{
-    flex: 5%;
+.title-message-container .title-del{
+    flex: 10%;
     text-align: center;
 }
 
@@ -73,12 +73,7 @@
     flex: 5%;
     text-align: center;
 }
-
-.title-message-container .title-del{
-    flex: 10%;
-    text-align: center;
-}
-
+/****************************************************************************************/
 .message-container {
     display: flex;
     align-items: center;
@@ -131,15 +126,7 @@
     text-align: center;
     margin-left: 10%;
 }
-
-.recycle-delete-button {
-    width: 5%;
-    cursor: pointer;
-    color: #dc3545;
-    text-align: center;
-    margin-left: 10%;
-}
-
+/*****************************************************************************************/
 .pagination-container {
     margin-top: 10px;
     display: flex;
@@ -153,3 +140,114 @@
     margin-right: 5px;
     color: #007bff;
 }
+/*****************************************************************************************/
+.recycle-message-container {
+    align-items: center;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+}
+
+.recycle-message-status {
+    width: 5%;
+    text-align: left;
+}
+
+.recycle-message-sen {
+    width: 15%;
+    text-align: left;
+    margin-left: 4.5%;
+}
+
+.recycle-message-rec {
+    width: 15%;
+    text-align: left;
+    margin-left: 9.7%;
+}
+
+.recycle-message-title {
+    width: 40%;
+    cursor: pointer;
+    color: #007bff;
+    text-align: center;
+    display: inline-block;
+    margin-left: 4.5%;
+}
+
+.recycle-message-date {
+    width: 15%;
+    text-align: center;
+    margin-left: 1%;
+}
+
+.recycle-delete-button1 {
+    width: 5%;
+    cursor: pointer;
+    color: #dc3545;
+    text-align: center;
+    margin-left: 4.5%;
+}
+
+.recycle-delete-button2 {
+    width: 5%;
+    cursor: pointer;
+    color: #007bff;
+    text-align: center;
+    margin-left: 1.5%;
+}
+/***********************************************************************************/
+.message-body {
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 20px;
+}
+
+.message-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.message-details span {
+    margin-bottom: 10px;
+}
+
+.message-details .view-sender {
+    margin-right: 1%;
+}
+
+.message-view-title {
+    text-align: center;
+}
+
+.content-label textarea {
+    width: 100%;
+    resize: none;
+    height: 150px;
+}
+
+.button-group button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.button-group button:hover {
+    background-color: #45a049;
+}
+
+.button-group button, .content-label textarea {
+    margin-top: 10px;
+}
+
+.button-group button + button {
+    margin-left: 10px;
+}
+/*************************************************************************************/
