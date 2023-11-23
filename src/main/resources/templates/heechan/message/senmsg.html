@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>보낸메시지</title>
-    <link rel="stylesheet" href="/heechan/css/msg.css">
+    <link rel="stylesheet" href="/heechan/css/msgView.css">
 </head>
 <body>
 보낸메시지 : <span th:text="${msgCount}"></span>
@@ -45,12 +45,12 @@
                 <span class="message-rec" th:text="${message.receiverNm}"></span>
                 <span class="message-span" th:if="${searchInput == null && searchOp  == null && div == null}">
                     <span class="message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo}} + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
-                    <span class="message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span class="message-date" th:text="${#temporals.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
                     <span class="delete-button" th:attr="onclick='senDelMsg(\''+ ${message.msgNo} + '\')'" style="cursor: pointer">삭제</span><br/>
                 </span>
                 <span class="message-span" th:if="${searchInput != null && searchOp  != null && div != null}">
                     <span class="message-title" th:attr="onclick='changePage(\'' + @{'/message/msgview?msgNo=' + ${message.msgNo} + '&pageNo=' + ${pageNo} + '&searchInput=' + ${searchInput} + '&searchOp=' + ${searchOp} + '&div=' + ${div}} + '\')'" style="cursor: pointer" th:text="${message.title}"></span>
-                    <span class="message-date" th:text="${#dates.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span class="message-date" th:text="${#temporals.format(message.sentAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
                     <span class="delete-button" th:attr="onclick='senDelSearchMsg(\''+ ${message.msgNo} + '\', \'' + ${pageNo} + '\', \'' + ${searchInput} + '\', \'' + ${searchOp} + '\', \'' + ${div} + '\')'" style="cursor: pointer">삭제</span><br/>
                 </span>
             </div>
