@@ -372,9 +372,9 @@ $(document).ready(function () { //받은 메시지에서 답변 메시지 작성
     });
 });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     setInterval(updateMessageCount, 3000);
-// });
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(updateMessageCount, 1000);
+});
 
 // document.addEventListener("DOMContentLoaded", function () {// 현재 URL이 특정 페이지인 경우에만 setInterval 실행
 //     if (window.location.pathname === "/message/recmsg") {
@@ -383,7 +383,7 @@ $(document).ready(function () { //받은 메시지에서 답변 메시지 작성
 // });
 
 function updateMessageCount() {
-    fetch("/")
+    fetch("/message/recmsg")
         .then(response => response.text())
         .then(data => {
             const match = data.match(/<span id="msg-cnt"[^>]*>(.*?)<\/span>/);
@@ -394,7 +394,7 @@ function updateMessageCount() {
                 console.error("Error: Unable to find msgCnt in HTML");
             }
         })
-        .catch(error => console.error("Error fetching message count:", error));
+        .catch();
 }
 
 function filterRecipients() {
