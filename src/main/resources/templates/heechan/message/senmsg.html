@@ -24,11 +24,6 @@
         <button onclick="changePage('/message/recycle')">휴지통</button>
         <button onclick="changePage('/message/writeform')">메시지보내기</button>
     </div>
-    <th:block th:if="${msgPage == null or msgPage.content.isEmpty()}">
-        <div class="message-container">
-            보낸 메시지가 없습니다.
-        </div>
-    </th:block>
     <div class="title-message-container">
         <span class="title-sen">발신자</span>
         <span class="title-rec">수신자</span>
@@ -36,6 +31,11 @@
         <span class="title-date">날짜</span>
         <span class="title-del">삭제</span>
     </div>
+    <th:block th:if="${msgPage == null or msgPage.content.isEmpty()}">
+        <div class="message-container">
+            보낸 메시지가 없습니다.
+        </div>
+    </th:block>
     <th:block th:each="message : ${msgPage.content}">
         <th:block th:if="${message.senDel == 0}">
             <div class="message-container">
