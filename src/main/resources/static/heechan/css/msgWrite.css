@@ -3,9 +3,14 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-top: 1%;
+    margin-bottom: 20px;
+    margin-left: 1%;
+    width: 1200px;
 }
 
 .form-section input {
+    height: 30px;
     border-radius: 8px;
 }
 
@@ -25,9 +30,8 @@
 }
 
 .sender-info input,
-.receiver-text1 input,
-.textarea {
-    width: 80%;
+.receiver-text1 input {
+    width: 79%;
     box-sizing: border-box;
     margin-bottom: 0.5%;
 }
@@ -40,7 +44,7 @@
 .receiver-text2 {
     display: flex;
     align-items: start;
-    margin-left: 8.5%;
+    margin-left: 8%;
 }
 
 .receiver-text2 input {
@@ -56,26 +60,30 @@
 }
 
 .message-title input{
-    width: 82%;
+    width: 80%;
+    box-sizing: border-box;
+    margin-bottom: 0.5%;
+}
+
+.msg-title input {
+    width: 75%;
     box-sizing: border-box;
     margin-bottom: 0.5%;
 }
 
 .textarea {
     width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5%;
     display: flex;
     align-items: flex-start;
     margin-top: 1%;
 }
 
-.textarea span {
-    width: 20%;
-}
-
 .textarea textarea {
     width: 100%;
     box-sizing: border-box;
-    margin-left: -14.5%;
+    margin-left: 1%;
     border-radius: 8px;
 }
 
