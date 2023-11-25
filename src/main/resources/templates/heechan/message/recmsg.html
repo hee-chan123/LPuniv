@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/heechan/css/msgView.css">
 </head>
 <body>
-받은메시지 : <span th:text="${msgCount}"></span> 건 | 안 읽은 메시지 : <span th:text="${msgCnt}" style="color: red"></span> 건
+받은메시지 : <span id="msgCount" th:text="${msgCount}"></span> 건 | 안 읽은 메시지 : <span id="msg-cnt" th:text="${msgCnt}" style="color: red"></span> 건
     <span id="search">
         <select id="searchOp">
             <option value="전체">전체</option>
