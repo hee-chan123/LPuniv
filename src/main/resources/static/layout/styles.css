@@ -126,7 +126,7 @@ a {
 }
 
 /* Active links menu */
-.actives {
+.active {
     background-color: var(--first-color);
 }
 
