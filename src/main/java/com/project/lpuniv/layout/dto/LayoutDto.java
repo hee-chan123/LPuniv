@@ -11,5 +11,4 @@ public class LayoutDto {
 
     private int user_no;
     private String user_nm;
-    private int msgCnt;
 }
