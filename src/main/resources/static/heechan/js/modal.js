@@ -4,17 +4,17 @@
 //     });
 // });
 
-document.getElementById('openModalBtn').addEventListener('click', openModal);
-function openModal() {
+document.getElementById('openModalBtn').addEventListener('click', openModals);
+function openModals() {
     document.getElementById('msg-modal-area').style.display = 'block';
     $('#modalContent').load('/message/recmsg');
 }
 
-function closeModal() {
+function closeModals() {
     document.getElementById('msg-modal-area').style.display = 'none';
 }
 
-document.querySelector('.modal-header .close').addEventListener('click', closeModal);
+document.querySelector('.modal-header .close').addEventListener('click', closeModals);
 
 function changePage(pageUrl) { //모달 화면 전환
     $('#modalContent').load(pageUrl);
@@ -384,9 +384,10 @@ $(document).ready(function () { //받은 메시지에서 답변 메시지 작성
     });
 });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     setInterval(updateMessageCount, 1000);
-// });
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(updateMessageCount, 1000);
+    setInterval(updateMessageCnt, 1000);
+});
 
 // document.addEventListener("DOMContentLoaded", function () {// 현재 URL이 특정 페이지인 경우에만 setInterval 실행
 //     if (window.location.pathname === "/message/recmsg") {
@@ -395,6 +396,20 @@ $(document).ready(function () { //받은 메시지에서 답변 메시지 작성
 // });
 
 function updateMessageCount() {
+    fetch("/message/recmsg")
+        .then(response => response.text())
+        .then(data => {
+            const match = data.match(/<span id="msgCount"[^>]*>(.*?)<\/span>/);
+            if (match && match[1]) {
+                const msgCntValue = match[1].trim();
+                document.getElementById("msgCount").innerText = msgCntValue;
+            } else {
+                console.error("Error: Unable to find msgCnt in HTML");
+            }
+        })
+        .catch();
+}
+function updateMessageCnt() {
     fetch("/message/recmsg")
         .then(response => response.text())
         .then(data => {
@@ -408,7 +423,6 @@ function updateMessageCount() {
         })
         .catch();
 }
-
 function filterRecipients() {
     const searchValue = document.getElementsByName('rec-search')[0].value;
     const selectElement = document.getElementsByName('rec-select')[0];
