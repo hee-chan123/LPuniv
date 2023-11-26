@@ -384,15 +384,9 @@ $(document).ready(function () { //받은 메시지에서 답변 메시지 작성
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    setInterval(updateMessageCount, 1000);
-    setInterval(updateMessageCnt, 1000);
-});
-
-// document.addEventListener("DOMContentLoaded", function () {// 현재 URL이 특정 페이지인 경우에만 setInterval 실행
-//     if (window.location.pathname === "/message/recmsg") {
-//         setInterval(updateMessageCount, 3000);
-//     }
+// document.addEventListener("DOMContentLoaded", function () {
+//     setInterval(updateMessageCount, 1000);
+//     setInterval(updateMessageCnt, 1000);
 // });
 
 function updateMessageCount() {
@@ -409,6 +403,7 @@ function updateMessageCount() {
         })
         .catch();
 }
+
 function updateMessageCnt() {
     fetch("/message/recmsg")
         .then(response => response.text())
@@ -423,6 +418,7 @@ function updateMessageCnt() {
         })
         .catch();
 }
+
 function filterRecipients() {
     const searchValue = document.getElementsByName('rec-search')[0].value;
     const selectElement = document.getElementsByName('rec-select')[0];
